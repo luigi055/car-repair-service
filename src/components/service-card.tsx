@@ -1,39 +1,20 @@
-import { ServiceTrack } from "../models/service-track";
-import { Stack, PadBox, Cluster, Grid } from "@rosepath/react-layouts";
+import { Service } from "../models/service-track";
+import { Stack, PadBox, Cluster } from "@rosepath/react-layouts";
 
 interface ServiceCardProps {
-	serviceTrack: ServiceTrack;
+	service: Service;
 }
 
-function ServiceCard({ serviceTrack }: ServiceCardProps) {
+function ServiceCard({ service }: ServiceCardProps) {
 	return (
-		<Stack gutter="size0">
+		<Stack key={`${service.code}${service.date}`}>
 			<Cluster as="p">
-				<p>Customer: </p>
+				<p>service: </p>
 				<p>
-					{serviceTrack.firstName} {serviceTrack.lastName}
+					{service.code} {service.date} {service.cost}
 				</p>
 			</Cluster>
-			<Cluster as="p">
-				<p>Vehicle: </p>
-				<p>
-					{serviceTrack.brand} {serviceTrack.model} {serviceTrack.year}
-				</p>
-			</Cluster>
-
-			<Grid>
-				{serviceTrack?.services.map((service) => (
-					<Stack key={`${service.code}${service.date}`}>
-						<Cluster as="p">
-							<p>service: </p>
-							<p>
-								{service.code} {service.date} {service.cost}
-							</p>
-						</Cluster>
-						<PadBox>{service.description}</PadBox>
-					</Stack>
-				))}
-			</Grid>
+			<PadBox>{service.description}</PadBox>
 		</Stack>
 	);
 }
