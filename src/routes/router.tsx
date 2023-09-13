@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { homePath, newServicePath } from "./routes";
 import { Home } from "../views/home";
+import { NewService } from "../views/new-service";
 
 const router = createBrowserRouter([
 	{
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
 	{
 		path: newServicePath,
 		Component() {
-			return <h1>Create service</h1>;
+			return <NewService />;
 		},
 	},
 	{
