@@ -8,7 +8,7 @@ interface Service {
 	cost: string;
 }
 
-interface Track {
+interface CarServiceTrack {
 	firstName: string;
 	lastName: string;
 	year: number;
@@ -18,11 +18,11 @@ interface Track {
 }
 
 interface GetCarServiceTrackRequest {
-	tracks: Track[];
+	tracks: CarServiceTrack[];
 }
 
 interface PostCarServiceTrackRequest {
-	track: Track;
+	track: CarServiceTrack;
 }
 
 class CarTrackerService {
@@ -32,7 +32,7 @@ class CarTrackerService {
 		});
 	}
 
-	public async postCarServiceTracks(data: Track) {
+	public async postCarServiceTracks(data: CarServiceTrack) {
 		return new Promise<PostCarServiceTrackRequest>((resolve) => {
 			setTimeout(() => resolve({ track: data }), Math.random() * 1000);
 		});
@@ -40,4 +40,4 @@ class CarTrackerService {
 }
 
 export { CarTrackerService };
-export type { Service, Track };
+export type { Service, CarServiceTrack as CarServiceTrack };
