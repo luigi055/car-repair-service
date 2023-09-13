@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import { homePath, newServicePath } from "./routes";
+import { Home } from "../views/home";
 
 const router = createBrowserRouter([
 	{
 		path: homePath,
 		Component() {
-			return <h1>Home</h1>;
+			return <Home />;
 		},
 	},
 	{
