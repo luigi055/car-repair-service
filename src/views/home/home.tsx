@@ -10,7 +10,7 @@ interface HomeProps {
 
 function Home(props: HomeProps) {
 	return (
-		<Cover as={Stack} topComponent={<Header />} bottomComponent={<Footer />}>
+		<Cover as="main" topComponent={<Header />} bottomComponent={<Footer />}>
 			<Center as={Stack} maxWidth={"768px"}>
 				<PadBox as="section">
 					{props.serviceTracks.map((serviceTrack) => (
