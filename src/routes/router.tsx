@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { homePath, newServicePath } from "./routes";
 import { Home } from "../views/home";
 import { NewService } from "../views/new-service";
+import { NotFound } from "../views/not-found";
 
 const router = createBrowserRouter([
 	{
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
 	{
 		path: "*",
 		Component() {
-			return <h1>Not found</h1>;
+			return <NotFound />;
 		},
 	},
 ]);
