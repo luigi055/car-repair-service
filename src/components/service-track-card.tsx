@@ -1,5 +1,5 @@
 import { ServiceTrack } from "../models/service-track";
-import { Stack, Cluster, Grid, PadBox, Sidebar } from "@rosepath/react-layouts";
+import { Stack, Cluster, PadBox, Sidebar } from "@rosepath/react-layouts";
 import { ServiceCard } from "./service-card";
 
 interface ServiceTrackCardProps {
