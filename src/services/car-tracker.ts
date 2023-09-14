@@ -28,13 +28,19 @@ interface PostCarServiceTrackRequest {
 class CarTrackerService {
 	public async getCarServiceTracks() {
 		return new Promise<GetCarServiceTrackRequest>((resolve) => {
-			setTimeout(() => resolve({ tracks: mockDB }), Math.random() * 1000);
+			setTimeout(
+				() => resolve({ tracks: mockDB.slice().reverse() }),
+				Math.random() * 1000
+			);
 		});
 	}
 
 	public async postCarServiceTracks(data: CarServiceTrack) {
 		return new Promise<PostCarServiceTrackRequest>((resolve) => {
-			setTimeout(() => resolve({ track: data }), Math.random() * 1000);
+			setTimeout(() => {
+				mockDB.push(data);
+				resolve({ track: data });
+			}, Math.random() * 1000);
 		});
 	}
 }
