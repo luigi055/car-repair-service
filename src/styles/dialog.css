@@ -1,0 +1,25 @@
+.dialog {
+	background: rgba(234, 255, 252, 0.9);
+	cursor: default;
+	display: flex;
+	height: 100%;
+	inset-block: 0;
+	inset-inline: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+	align-items: center;
+	justify-items: center;
+}
+
+.dialog > .inner-dialog {
+	position: relative;
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.full-size {
+	width: 100vh;
+	height: 100vw;
+}
