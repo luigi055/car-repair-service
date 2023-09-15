@@ -48,11 +48,8 @@ function NewServiceForm() {
 	}
 
 	return (
-		<PadBox
-			padding="size4"
-			className="box has-background-primary has-text-black-bis"
-		>
-			<Center className="box has-background-white-ter" maxWidth={"756px"}>
+		<PadBox padding="size4">
+			<Center className="box " maxWidth={"756px"}>
 				<h3 className="title is-3">Service Registration</h3>
 				<Form
 					onSubmit={handleFormSubmit}

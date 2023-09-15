@@ -9,7 +9,7 @@ function Header() {
 	};
 
 	return (
-		<PadBox padding="size5" className="has-background-primary">
+		<PadBox padding="size5" className=" has-background-primary">
 			<Switcher gutter="size1" className="is-justify-content-space-between">
 				<NavLink to={homePath} className={generateActiveClass}>
 					<h1 className="title is-4 ">Car Service Tracker</h1>
