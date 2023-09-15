@@ -27,7 +27,9 @@ const FieldText = (props: {
 						defaultValue={props.defaultValue}
 					/>
 				</div>
-				{meta.touched && meta.error && <span>{meta.error}</span>}
+				{meta.touched && meta.error && (
+					<p className="help is-danger">{meta.error}</p>
+				)}
 			</div>
 		)}
 	/>

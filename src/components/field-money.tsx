@@ -27,7 +27,9 @@ const FieldMoney = (props: {
 								type={props.type}
 								placeholder={props.placeholder}
 							/>
-							{meta.error && meta.touched && <p>{meta.error}</p>}
+							{meta.error && meta.touched && (
+								<p className="help is-danger">{meta.error}</p>
+							)}
 						</Stack>
 					</div>
 					<p className="control">

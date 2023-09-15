@@ -147,7 +147,7 @@ function NewServiceForm() {
 									type="submit"
 									disabled={submitting || pristine}
 								>
-									Primary
+									Create
 								</button>
 							</Cluster>
 
