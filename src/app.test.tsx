@@ -1,4 +1,5 @@
-import { byRole } from "testing-library-selector";
+import { byLabelText, byRole } from "testing-library-selector";
+import { userEvent } from "@testing-library/user-event";
 import { render, waitFor, within } from "@testing-library/react";
 import { it, expect, describe } from "vitest";
 import App from "./app";
@@ -9,6 +10,15 @@ const ui = {
 	serviceTrackListSection: byRole("heading", { name: "Service track List:" }),
 	serviceTrackCard: byRole("article", { name: "service track information" }),
 	footerInformation: byRole("contentinfo", { name: "" }),
+	firstNameField: byRole("textbox", { name: "First name" }),
+	lastNameField: byRole("textbox", { name: "Last name" }),
+	vehicleMakeField: byRole("textbox", { name: "Make" }),
+	vehicleModelField: byRole("textbox", { name: "Model" }),
+	vehicleYearField: byRole("spinbutton", { name: "Year" }),
+	serviceCodeField: byRole("spinbutton", { name: "Code" }),
+	serviceDateField: byLabelText("Date"),
+	serviceCostField: byRole("spinbutton", { name: "Cost" }),
+	serviceDescriptionField: byRole("textbox", { name: "Description" }),
 };
 
 describe("Testing the Home page", () => {
@@ -81,5 +91,28 @@ describe("Testing the Home page", () => {
 		expect(ui.footerInformation.get().textContent).toBe(
 			"Made by Pedro La Rosa"
 		);
+	});
+});
+
+describe("Testing new service registration page", () => {
+	it("should show all fields of the new service registration form", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		await waitFor(() => {
+			expect(ui.serviceTrackListSection.get()).toBeDefined();
+		});
+
+		await user.click(ui.newServiceLink.get());
+
+		expect(ui.firstNameField.get()).toBeDefined();
+		expect(ui.lastNameField.get()).toBeDefined();
+		expect(ui.vehicleMakeField.get()).toBeDefined();
+		expect(ui.vehicleModelField.get()).toBeDefined();
+		expect(ui.vehicleYearField.get()).toBeDefined();
+		expect(ui.serviceCodeField.get()).toBeDefined();
+		expect(ui.serviceDateField.get()).toBeDefined();
+		expect(ui.serviceCostField.get()).toBeDefined();
+		expect(ui.serviceDescriptionField.get()).toBeDefined();
 	});
 });
