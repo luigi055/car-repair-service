@@ -262,4 +262,47 @@ describe("Testing new service registration page", () => {
 			)
 		).toBeDefined();
 	});
+
+	it("should go back to the registration service form to add another service registration", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		await user.click(ui.newServiceLink.get());
+
+		expect(ui.createButton.get().disabled).toBe(true);
+		expect(ui.codeRequiredMessage.query()).toBeNull();
+		expect(ui.dateRequiredMessage.query()).toBeNull();
+		expect(ui.costRequiredMessage.query()).toBeNull();
+
+		await user.type(ui.firstNameField.get(), "Pedro");
+		await user.type(ui.lastNameField.get(), "La Rosa");
+		await user.type(ui.vehicleMakeField.get(), "Citroen");
+		await user.type(ui.vehicleModelField.get(), "C4 Grand Picasso");
+		await user.type(ui.vehicleYearField.get(), "2011");
+		await user.type(ui.serviceDateField.get(), "2020-01-02");
+		await user.type(ui.serviceCodeField.get(), "1001");
+		await user.type(ui.serviceCostField.get(), "20");
+		await user.type(
+			ui.serviceDescriptionField.get(),
+			"flat tired & Oil Change"
+		);
+
+		await user.click(ui.createButton.get());
+
+		await waitFor(() => {
+			expect(ui.successMessage.get());
+		});
+
+		await user.click(ui.registerAnotherServiceCTA.get());
+
+		expect(ui.firstNameField.get().value).toBe("");
+		expect(ui.lastNameField.get().value).toBe("");
+		expect(ui.vehicleMakeField.get().value).toBe("");
+		expect(ui.vehicleModelField.get().value).toBe("");
+		expect(ui.vehicleYearField.get().value).toBe("");
+		expect(ui.serviceCodeField.get().value).toBe("");
+		expect(ui.serviceDateField.get().value).toBe("");
+		expect(ui.serviceCostField.get().value).toBe("");
+		expect(ui.serviceDescriptionField.get().value).toBe("");
+	});
 });
