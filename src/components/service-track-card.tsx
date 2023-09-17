@@ -8,7 +8,11 @@ interface ServiceTrackCardProps {
 
 function ServiceTrackCard({ serviceTrack }: ServiceTrackCardProps) {
 	return (
-		<PadBox className="box has-background-primary">
+		<PadBox
+			as="article"
+			aria-label="service track information"
+			className="box has-background-primary"
+		>
 			<Stack gutter="size4">
 				<Sidebar fraction="1/2">
 					<Cluster as="p">

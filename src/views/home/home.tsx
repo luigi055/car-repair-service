@@ -13,7 +13,8 @@ function Home(props: HomeProps) {
 		<Cover as="main" topComponent={<Header />} bottomComponent={<Footer />}>
 			<PadBox padding="size5">
 				<Center as={Stack} maxWidth={"768px"}>
-					<PadBox as="section">
+					<Stack as="section">
+						<h2 className="title is-4">Service track List:</h2>
 						{props.serviceTracks.map((serviceTrack) => (
 							// TODO:
 							// Since the service doesn't provide id per record
@@ -23,7 +24,7 @@ function Home(props: HomeProps) {
 								serviceTrack={serviceTrack}
 							/>
 						))}
-					</PadBox>
+					</Stack>
 				</Center>
 			</PadBox>
 		</Cover>
