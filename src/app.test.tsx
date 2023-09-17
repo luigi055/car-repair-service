@@ -23,6 +23,9 @@ const ui = {
 	dateRequiredMessage: byText("Date is required"),
 	costRequiredMessage: byText("Cost is required"),
 	createButton: byRole("button", { name: "Create" }),
+	successMessage: byRole("heading", {
+		name: "The service has been successfully created!",
+	}),
 };
 
 describe("Testing the Home page", () => {
@@ -148,5 +151,38 @@ describe("Testing new service registration page", () => {
 		expect(ui.codeRequiredMessage.query()).toBeDefined();
 		expect(ui.dateRequiredMessage.query()).toBeDefined();
 		expect(ui.costRequiredMessage.query()).toBeDefined();
+	});
+
+	it("should create a new service registration", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		await user.click(ui.newServiceLink.get());
+
+		expect(ui.createButton.get().disabled).toBe(true);
+		expect(ui.codeRequiredMessage.query()).toBeNull();
+		expect(ui.dateRequiredMessage.query()).toBeNull();
+		expect(ui.costRequiredMessage.query()).toBeNull();
+
+		await user.type(ui.firstNameField.get(), "Pedro");
+		await user.type(ui.lastNameField.get(), "La Rosa");
+		await user.type(ui.vehicleMakeField.get(), "Citroen");
+		await user.type(ui.vehicleModelField.get(), "C4 Grand Picasso");
+		await user.type(ui.vehicleYearField.get(), "2011");
+		await user.type(ui.serviceDateField.get(), "2020-01-02");
+		await user.type(ui.serviceCodeField.get(), "1001");
+		await user.type(ui.serviceCostField.get(), "20");
+		await user.type(
+			ui.serviceDescriptionField.get(),
+			"flat tired & Oil Change"
+		);
+
+		await user.click(ui.createButton.get());
+
+		await waitFor(() => {
+			expect(ui.successMessage.get());
+		});
+
+		expect(ui.successMessage.get()).toBeDefined();
 	});
 });
