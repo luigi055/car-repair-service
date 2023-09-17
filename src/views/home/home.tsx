@@ -12,7 +12,7 @@ function Home(props: HomeProps) {
 	return (
 		<Cover as="main" topComponent={<Header />} bottomComponent={<Footer />}>
 			<PadBox padding="size5">
-				<Center as={Stack} maxWidth={"768px"}>
+				<Center as={Stack} maxWidth={"48rem"}>
 					<Stack as="section">
 						<h2 className="title is-4">Service track List:</h2>
 						{props.serviceTracks.map((serviceTrack) => (
