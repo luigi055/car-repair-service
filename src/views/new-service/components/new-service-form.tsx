@@ -67,7 +67,7 @@ function NewServiceForm() {
 
 								<FieldText
 									id="lastName"
-									label="Lastname"
+									label="Last name"
 									type="text"
 									placeholder="Enter the customer's last name"
 								/>
