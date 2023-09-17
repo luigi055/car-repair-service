@@ -15,7 +15,7 @@ function Header() {
 					<h1 className="title is-4 ">Car Service Tracker</h1>
 				</NavLink>
 				<NavLink to={newServicePath} className={generateActiveClass}>
-					Register new service
+					<p className="button is-link is-dark">Register new service</p>
 				</NavLink>
 			</Switcher>
 		</PadBox>
