@@ -8,15 +8,14 @@ interface ServiceCardProps {
 function ServiceCard({ service }: ServiceCardProps) {
 	return (
 		<PadBox
+			as="section"
 			className="box has-background-grey-darker has-text-white-bis"
 			padding={["size3", "size4", "size4"]}
+			aria-label="service information"
 		>
 			<Stack gutter="size3" key={`${service.code}${service.date}`}>
 				<div className="is-flex is-justify-content-space-between">
-					<p className="">
-						Service:{"  "}
-						<strong className=" has-text-white-bis">{service.code}</strong>
-					</p>
+					<p>Service: {service.code}</p>
 					<p className="is-size-7">{service.date}</p>
 				</div>
 				<Cluster as="p">
