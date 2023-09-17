@@ -31,7 +31,14 @@ const ui = {
 	registerAnotherServiceCTA: byRole("button", {
 		name: "Register another service",
 	}),
+	loading: byText("Loading..."),
 };
+
+it("should show the loading spinner when the page is loading", () => {
+	render(<App />);
+
+	expect(ui.loading.get()).toBeDefined();
+});
 
 describe("Testing the Home page", () => {
 	it("should show the correct header with the name of the app and the call to action for registering a new service", async () => {
