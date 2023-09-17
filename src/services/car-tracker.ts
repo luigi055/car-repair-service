@@ -1,5 +1,5 @@
 import data from "./track-mock-data";
-const mockDB = data;
+let mockDB = data.slice();
 
 interface Service {
 	code: number;
@@ -42,6 +42,10 @@ class CarTrackerService {
 				resolve({ track: data });
 			}, Math.random() * 1000);
 		});
+	}
+
+	public async reset() {
+		mockDB = data.slice();
 	}
 }
 
