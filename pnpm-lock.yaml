@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@rosepath/react-layouts':
-    specifier: ^0.0.21
-    version: 0.0.21(react@18.2.0)
+    specifier: ^0.0.22
+    version: 0.0.22(react@18.2.0)
   '@types/react-router-dom':
     specifier: ^5.3.3
     version: 5.3.3
@@ -653,8 +653,8 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: false
 
-  /@rosepath/react-layouts@0.0.21(react@18.2.0):
-    resolution: {integrity: sha512-UJoQ8aqvad8ZIpHriwzrBgQt2hF7YUuG85kCdwsl4ZsVhXDrgD2ptXMrLrXoTYYki/w5IQfT8+F8iV+Dvp70NA==}
+  /@rosepath/react-layouts@0.0.22(react@18.2.0):
+    resolution: {integrity: sha512-KKl+rE7+IbuPrUeKkPFa9nqGs8z7x8S6Q/GK40ZPK4Rh7LkEGJyi+NpZ6+HMEtBuDG0JeTD5H5tUTBeewNA/1w==}
     peerDependencies:
       react: ^16.8 || ^17 || ^18
     dependencies:

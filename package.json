@@ -14,7 +14,7 @@
 		"test:coverage": "vitest run --coverage"
 	},
 	"dependencies": {
-		"@rosepath/react-layouts": "^0.0.21",
+		"@rosepath/react-layouts": "^0.0.22",
 		"@types/react-router-dom": "^5.3.3",
 		"final-form": "^4.20.10",
 		"react": "^18.2.0",
