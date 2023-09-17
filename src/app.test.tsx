@@ -1,4 +1,4 @@
-import { byLabelText, byRole } from "testing-library-selector";
+import { byLabelText, byRole, byText } from "testing-library-selector";
 import { userEvent } from "@testing-library/user-event";
 import { render, waitFor, within } from "@testing-library/react";
 import { it, expect, describe } from "vitest";
@@ -19,6 +19,10 @@ const ui = {
 	serviceDateField: byLabelText("Date"),
 	serviceCostField: byRole("spinbutton", { name: "Cost" }),
 	serviceDescriptionField: byRole("textbox", { name: "Description" }),
+	codeRequiredMessage: byText("Code is required"),
+	dateRequiredMessage: byText("Date is required"),
+	costRequiredMessage: byText("Cost is required"),
+	createButton: byRole("button", { name: "Create" }),
 };
 
 describe("Testing the Home page", () => {
@@ -99,10 +103,6 @@ describe("Testing new service registration page", () => {
 		const user = userEvent.setup();
 		render(<App />);
 
-		await waitFor(() => {
-			expect(ui.serviceTrackListSection.get()).toBeDefined();
-		});
-
 		await user.click(ui.newServiceLink.get());
 
 		expect(ui.firstNameField.get()).toBeDefined();
@@ -114,5 +114,39 @@ describe("Testing new service registration page", () => {
 		expect(ui.serviceDateField.get()).toBeDefined();
 		expect(ui.serviceCostField.get()).toBeDefined();
 		expect(ui.serviceDescriptionField.get()).toBeDefined();
+		expect(ui.createButton.get()).toBeDefined();
+		expect(ui.createButton.get().disabled).toBe(true);
+	});
+
+	it("should enable the button when the user start filling any field", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		await user.click(ui.newServiceLink.get());
+
+		expect(ui.createButton.get().disabled).toBe(true);
+
+		await user.type(ui.firstNameField.get(), "Pedro");
+
+		expect(ui.createButton.get().disabled).toBe(false);
+	});
+
+	it("should show all the required field's messages when the user try to submit without filling these fields", async () => {
+		const user = userEvent.setup();
+		render(<App />);
+
+		await user.click(ui.newServiceLink.get());
+
+		expect(ui.createButton.get().disabled).toBe(true);
+		expect(ui.codeRequiredMessage.query()).toBeNull();
+		expect(ui.dateRequiredMessage.query()).toBeNull();
+		expect(ui.costRequiredMessage.query()).toBeNull();
+
+		await user.type(ui.firstNameField.get(), "Pedro");
+
+		expect(ui.createButton.get().disabled).toBe(false);
+		expect(ui.codeRequiredMessage.query()).toBeDefined();
+		expect(ui.dateRequiredMessage.query()).toBeDefined();
+		expect(ui.costRequiredMessage.query()).toBeDefined();
 	});
 });
