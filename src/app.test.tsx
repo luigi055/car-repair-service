@@ -37,7 +37,7 @@ const ui = {
 it("should show the loading spinner when the page is loading", () => {
 	render(<App />);
 
-	expect(ui.loading.get()).toBeDefined();
+	expect(ui.loading.get()).toBeInTheDocument();
 });
 
 describe("Testing the Home page", () => {
@@ -45,18 +45,18 @@ describe("Testing the Home page", () => {
 		render(<App />);
 
 		await waitFor(() => {
-			expect(ui.serviceTrackListSection.get()).toBeDefined();
+			expect(ui.serviceTrackListSection.get()).toBeInTheDocument();
 		});
 
-		expect(ui.brandHomeLink.get()).toBeDefined();
-		expect(ui.newServiceLink.get()).toBeDefined();
+		expect(ui.brandHomeLink.get()).toBeInTheDocument();
+		expect(ui.newServiceLink.get()).toBeInTheDocument();
 	});
 
 	it("should show all the initial records coming from the api", async () => {
 		render(<App />);
 
 		await waitFor(() => {
-			expect(ui.serviceTrackListSection.get()).toBeDefined();
+			expect(ui.serviceTrackListSection.get()).toBeInTheDocument();
 		});
 
 		expect(ui.serviceTrackCard.getAll()).toHaveLength(4);
@@ -66,7 +66,7 @@ describe("Testing the Home page", () => {
 		render(<App />);
 
 		await waitFor(() => {
-			expect(ui.serviceTrackListSection.get()).toBeDefined();
+			expect(ui.serviceTrackListSection.get()).toBeInTheDocument();
 		});
 
 		// the third article is going to be used as model since it contains more than one services
@@ -83,28 +83,40 @@ describe("Testing the Home page", () => {
 
 		const firstServiceInformation = within(services[0]);
 
-		expect(firstServiceInformation.getByText("Service: 1001")).toBeDefined();
-		expect(firstServiceInformation.getByText("Cost: $36.42")).toBeDefined();
-		expect(firstServiceInformation.getByText("March 13, 2019")).toBeDefined();
+		expect(
+			firstServiceInformation.getByText("Service: 1001")
+		).toBeInTheDocument();
+		expect(
+			firstServiceInformation.getByText("Cost: $36.42")
+		).toBeInTheDocument();
+		expect(
+			firstServiceInformation.getByText("March 13, 2019")
+		).toBeInTheDocument();
 		expect(
 			firstServiceInformation.getByText("Description: Oil change")
-		).toBeDefined();
+		).toBeInTheDocument();
 
 		const secondServiceInformation = within(services[1]);
 
-		expect(secondServiceInformation.getByText("Service: 1003")).toBeDefined();
-		expect(secondServiceInformation.getByText("Cost: $206.14")).toBeDefined();
-		expect(secondServiceInformation.getByText("March 13, 2019")).toBeDefined();
+		expect(
+			secondServiceInformation.getByText("Service: 1003")
+		).toBeInTheDocument();
+		expect(
+			secondServiceInformation.getByText("Cost: $206.14")
+		).toBeInTheDocument();
+		expect(
+			secondServiceInformation.getByText("March 13, 2019")
+		).toBeInTheDocument();
 		expect(
 			secondServiceInformation.getByText("Description: A/C recharge")
-		).toBeDefined();
+		).toBeInTheDocument();
 	});
 
 	it("should show the correct footer information", async () => {
 		render(<App />);
 
 		await waitFor(() => {
-			expect(ui.serviceTrackListSection.get()).toBeDefined();
+			expect(ui.serviceTrackListSection.get()).toBeInTheDocument();
 		});
 
 		expect(ui.footerInformation.get().textContent).toBe(
@@ -125,17 +137,17 @@ describe("Testing new service registration page", () => {
 
 		await user.click(ui.newServiceLink.get());
 
-		expect(ui.firstNameField.get()).toBeDefined();
-		expect(ui.lastNameField.get()).toBeDefined();
-		expect(ui.vehicleMakeField.get()).toBeDefined();
-		expect(ui.vehicleModelField.get()).toBeDefined();
-		expect(ui.vehicleYearField.get()).toBeDefined();
-		expect(ui.serviceCodeField.get()).toBeDefined();
-		expect(ui.serviceDateField.get()).toBeDefined();
-		expect(ui.serviceCostField.get()).toBeDefined();
-		expect(ui.serviceDescriptionField.get()).toBeDefined();
-		expect(ui.createButton.get()).toBeDefined();
-		expect(ui.createButton.get().disabled).toBe(true);
+		expect(ui.firstNameField.get()).toBeInTheDocument();
+		expect(ui.lastNameField.get()).toBeInTheDocument();
+		expect(ui.vehicleMakeField.get()).toBeInTheDocument();
+		expect(ui.vehicleModelField.get()).toBeInTheDocument();
+		expect(ui.vehicleYearField.get()).toBeInTheDocument();
+		expect(ui.serviceCodeField.get()).toBeInTheDocument();
+		expect(ui.serviceDateField.get()).toBeInTheDocument();
+		expect(ui.serviceCostField.get()).toBeInTheDocument();
+		expect(ui.serviceDescriptionField.get()).toBeInTheDocument();
+		expect(ui.createButton.get()).toBeInTheDocument();
+		expect(ui.createButton.get()).toBeDisabled();
 	});
 
 	it("should enable the button when the user start filling any field", async () => {
@@ -144,11 +156,11 @@ describe("Testing new service registration page", () => {
 
 		await user.click(ui.newServiceLink.get());
 
-		expect(ui.createButton.get().disabled).toBe(true);
+		expect(ui.createButton.get()).toBeDisabled();
 
 		await user.type(ui.firstNameField.get(), "Pedro");
 
-		expect(ui.createButton.get().disabled).toBe(false);
+		expect(ui.createButton.get()).not.toBeDisabled();
 	});
 
 	it("should show all the required field's messages when the user try to submit without filling these fields", async () => {
@@ -157,17 +169,20 @@ describe("Testing new service registration page", () => {
 
 		await user.click(ui.newServiceLink.get());
 
-		expect(ui.createButton.get().disabled).toBe(true);
-		expect(ui.codeRequiredMessage.query()).toBeNull();
-		expect(ui.dateRequiredMessage.query()).toBeNull();
-		expect(ui.costRequiredMessage.query()).toBeNull();
+		expect(ui.createButton.get()).toBeDisabled();
+		expect(ui.codeRequiredMessage.query()).not.toBeInTheDocument();
+		expect(ui.dateRequiredMessage.query()).not.toBeInTheDocument();
+		expect(ui.costRequiredMessage.query()).not.toBeInTheDocument();
 
 		await user.type(ui.firstNameField.get(), "Pedro");
 
-		expect(ui.createButton.get().disabled).toBe(false);
-		expect(ui.codeRequiredMessage.query()).toBeDefined();
-		expect(ui.dateRequiredMessage.query()).toBeDefined();
-		expect(ui.costRequiredMessage.query()).toBeDefined();
+		expect(ui.createButton.get()).not.toBeDisabled();
+
+		await user.click(ui.createButton.get());
+
+		expect(ui.codeRequiredMessage.query()).toBeInTheDocument();
+		expect(ui.dateRequiredMessage.query()).toBeInTheDocument();
+		expect(ui.costRequiredMessage.query()).toBeInTheDocument();
 	});
 
 	it("should create a new service registration", async () => {
@@ -176,10 +191,10 @@ describe("Testing new service registration page", () => {
 
 		await user.click(ui.newServiceLink.get());
 
-		expect(ui.createButton.get().disabled).toBe(true);
-		expect(ui.codeRequiredMessage.query()).toBeNull();
-		expect(ui.dateRequiredMessage.query()).toBeNull();
-		expect(ui.costRequiredMessage.query()).toBeNull();
+		expect(ui.createButton.get()).toBeDisabled();
+		expect(ui.codeRequiredMessage.query()).not.toBeInTheDocument();
+		expect(ui.dateRequiredMessage.query()).not.toBeInTheDocument();
+		expect(ui.costRequiredMessage.query()).not.toBeInTheDocument();
 
 		await user.type(ui.firstNameField.get(), "Pedro");
 		await user.type(ui.lastNameField.get(), "La Rosa");
@@ -200,9 +215,9 @@ describe("Testing new service registration page", () => {
 			expect(ui.successMessage.get());
 		});
 
-		expect(ui.successMessage.get()).toBeDefined();
-		expect(ui.takeMeHomeCTA.get()).toBeDefined();
-		expect(ui.registerAnotherServiceCTA.get()).toBeDefined();
+		expect(ui.successMessage.get()).toBeInTheDocument();
+		expect(ui.takeMeHomeCTA.get()).toBeInTheDocument();
+		expect(ui.registerAnotherServiceCTA.get()).toBeInTheDocument();
 	});
 
 	it("should see the new registration in home page when the user clicks on the take me home button", async () => {
@@ -211,10 +226,10 @@ describe("Testing new service registration page", () => {
 
 		await user.click(ui.newServiceLink.get());
 
-		expect(ui.createButton.get().disabled).toBe(true);
-		expect(ui.codeRequiredMessage.query()).toBeNull();
-		expect(ui.dateRequiredMessage.query()).toBeNull();
-		expect(ui.costRequiredMessage.query()).toBeNull();
+		expect(ui.createButton.get()).toBeDisabled();
+		expect(ui.codeRequiredMessage.query()).not.toBeInTheDocument();
+		expect(ui.dateRequiredMessage.query()).not.toBeInTheDocument();
+		expect(ui.costRequiredMessage.query()).not.toBeInTheDocument();
 
 		await user.type(ui.firstNameField.get(), "Pedro Luis");
 		await user.type(ui.lastNameField.get(), "La Rosa");
@@ -235,22 +250,24 @@ describe("Testing new service registration page", () => {
 			expect(ui.successMessage.get());
 		});
 
-		expect(ui.successMessage.get()).toBeDefined();
+		expect(ui.successMessage.get()).toBeInTheDocument();
 
 		await user.click(ui.takeMeHomeCTA.get());
 
 		await waitFor(() => {
-			expect(ui.serviceTrackListSection.get()).toBeDefined();
+			expect(ui.serviceTrackListSection.get()).toBeInTheDocument();
 		});
 
 		expect(ui.serviceTrackCard.getAll()).toHaveLength(5);
 
 		const serviceInformationArticle = within(ui.serviceTrackCard.getAll()[0]);
 
-		expect(serviceInformationArticle.getByText("Pedro Luis La Rosa"));
+		expect(
+			serviceInformationArticle.getByText("Pedro Luis La Rosa")
+		).toBeInTheDocument();
 		expect(
 			serviceInformationArticle.getByText("Citroen C4 Grand Picasso 2012")
-		);
+		).toBeInTheDocument();
 
 		const services = serviceInformationArticle.getAllByRole("region", {
 			name: "service information",
@@ -260,14 +277,20 @@ describe("Testing new service registration page", () => {
 
 		const firstServiceInformation = within(services[0]);
 
-		expect(firstServiceInformation.getByText("Service: 1001")).toBeDefined();
-		expect(firstServiceInformation.getByText("Cost: $20.00")).toBeDefined();
-		expect(firstServiceInformation.getByText("December 9, 2023")).toBeDefined();
+		expect(
+			firstServiceInformation.getByText("Service: 1001")
+		).toBeInTheDocument();
+		expect(
+			firstServiceInformation.getByText("Cost: $20.00")
+		).toBeInTheDocument();
+		expect(
+			firstServiceInformation.getByText("December 9, 2023")
+		).toBeInTheDocument();
 		expect(
 			firstServiceInformation.getByText(
 				"Description: flat tired & Oil Change 2"
 			)
-		).toBeDefined();
+		).toBeInTheDocument();
 	});
 
 	it("should go back to the registration service form to add another service registration", async () => {
@@ -276,10 +299,10 @@ describe("Testing new service registration page", () => {
 
 		await user.click(ui.newServiceLink.get());
 
-		expect(ui.createButton.get().disabled).toBe(true);
-		expect(ui.codeRequiredMessage.query()).toBeNull();
-		expect(ui.dateRequiredMessage.query()).toBeNull();
-		expect(ui.costRequiredMessage.query()).toBeNull();
+		expect(ui.createButton.get()).toBeDisabled();
+		expect(ui.codeRequiredMessage.query()).not.toBeInTheDocument();
+		expect(ui.dateRequiredMessage.query()).not.toBeInTheDocument();
+		expect(ui.costRequiredMessage.query()).not.toBeInTheDocument();
 
 		await user.type(ui.firstNameField.get(), "Pedro");
 		await user.type(ui.lastNameField.get(), "La Rosa");
@@ -302,14 +325,14 @@ describe("Testing new service registration page", () => {
 
 		await user.click(ui.registerAnotherServiceCTA.get());
 
-		expect(ui.firstNameField.get().value).toBe("");
-		expect(ui.lastNameField.get().value).toBe("");
-		expect(ui.vehicleMakeField.get().value).toBe("");
-		expect(ui.vehicleModelField.get().value).toBe("");
-		expect(ui.vehicleYearField.get().value).toBe("");
-		expect(ui.serviceCodeField.get().value).toBe("");
-		expect(ui.serviceDateField.get().value).toBe("");
-		expect(ui.serviceCostField.get().value).toBe("");
-		expect(ui.serviceDescriptionField.get().value).toBe("");
+		expect(ui.firstNameField.get()).toHaveDisplayValue("");
+		expect(ui.lastNameField.get()).toHaveDisplayValue("");
+		expect(ui.vehicleMakeField.get()).toHaveDisplayValue("");
+		expect(ui.vehicleModelField.get()).toHaveDisplayValue("");
+		expect(ui.vehicleYearField.get()).toHaveDisplayValue("");
+		expect(ui.serviceCodeField.get()).toHaveDisplayValue("");
+		expect(ui.serviceDateField.get()).toHaveDisplayValue("");
+		expect(ui.serviceCostField.get()).toHaveDisplayValue("");
+		expect(ui.serviceDescriptionField.get()).toHaveDisplayValue("");
 	});
 });
