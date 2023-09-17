@@ -6,7 +6,7 @@ import { NotFound } from "../views/not-found";
 import { CarTrackerService } from "../services/car-tracker";
 import { ServiceTrack } from "../models/service-track";
 import { RootErrorBoundary } from "./error-boundary/root-error-boundary";
-import { adaptCarServiceToServiceTrack } from "../models/adapters/in/adaptCarServiceToServiceTrack";
+import { adaptCarServiceToServiceTrack } from "../models/adapters/in/adapt-car-service-to-service-track";
 
 const router = createBrowserRouter([
 	{
