@@ -112,6 +112,7 @@ function NewServiceForm() {
 										id="date"
 										label="Date"
 										type="date"
+										placeholder="Eg: 01/09/2023"
 										defaultValue={formatDate(new Date())}
 										validate={requiredWithMessage("Date is required")}
 									/>
