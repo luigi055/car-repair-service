@@ -9,7 +9,7 @@ So far the page has only be tested on Chrome 116 on MacOS M1
 Requirements:
 
 - Node v18+
-- pnpm
+- pnpm v8.3.0+
 
 Steps:
 
