@@ -57,7 +57,6 @@ function NewServiceForm() {
 						<Stack as="form" gutter="size5" onSubmit={handleSubmit}>
 							<Cluster as={"fieldset"} gutter="size4">
 								<legend className="title is-4">Customer Information</legend>
-
 								<FieldText
 									id="firstName"
 									label="First name"

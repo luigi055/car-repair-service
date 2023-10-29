@@ -5,11 +5,14 @@ import { NewServiceForm } from "./components/new-service-form";
 
 function NewService() {
 	return (
-		<div className="has-background-primary has-text-black-bis">
-			<Cover as="main" topComponent={<Header />} bottomComponent={<Footer />}>
-				<NewServiceForm />
-			</Cover>
-		</div>
+		<Cover
+			as="main"
+			topComponent={<Header />}
+			bottomComponent={<Footer />}
+			className="has-background-primary has-text-black-bis"
+		>
+			<NewServiceForm />
+		</Cover>
 	);
 }
 

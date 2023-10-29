@@ -18,9 +18,7 @@ function ServiceCard({ service }: ServiceCardProps) {
 					<p>Service: {service.code}</p>
 					<p className="is-size-7">{service.date}</p>
 				</div>
-				<Cluster as="p">
-					<p>Cost: {service.cost}</p>
-				</Cluster>
+				<Cluster as="p">Cost: {service.cost}</Cluster>
 				<PadBox>Description: {service.description}</PadBox>
 			</Stack>
 		</PadBox>

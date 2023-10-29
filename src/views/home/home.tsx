@@ -3,6 +3,7 @@ import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";
 import { ServiceTrack } from "../../models/service-track";
 import { ServiceTrackCard } from "../../components/service-track-card";
+import {} from "@rosepath/styles/dist/css/main.min.css";
 
 interface HomeProps {
 	serviceTracks: ServiceTrack[];
@@ -12,7 +13,7 @@ function Home(props: HomeProps) {
 	return (
 		<Cover as="main" topComponent={<Header />} bottomComponent={<Footer />}>
 			<PadBox padding="size5">
-				<Center as={Stack} maxWidth={"48rem"}>
+				<Center maxWidth={"48rem"}>
 					<Stack as="section">
 						<h2 className="title is-4">Service track List:</h2>
 						{props.serviceTracks.map((serviceTrack) => (

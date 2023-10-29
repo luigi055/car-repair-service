@@ -13,7 +13,7 @@ const FieldMoney = (props: {
 		name={props.id}
 		validate={props.validate}
 		render={({ input, meta }) => (
-			<Stack>
+			<Stack gutter="size0">
 				<label className="label" htmlFor={props.id}>
 					{props.label}
 				</label>
