@@ -1,3 +1,4 @@
+import { Box } from "@rosepath/react-box";
 import { Field } from "react-final-form";
 
 const FieldText = (props: {
@@ -13,11 +14,11 @@ const FieldText = (props: {
 		name={props.id}
 		validate={props.validate}
 		render={({ input, meta }) => (
-			<div className="field">
+			<Box className="field">
 				<label className="label" htmlFor={props.id}>
 					{props.label}
 				</label>
-				<div className="control is-expanded ">
+				<Box className="control is-expanded ">
 					<input
 						id={props.id}
 						className="input"
@@ -26,11 +27,11 @@ const FieldText = (props: {
 						placeholder={props.placeholder}
 						defaultValue={props.defaultValue}
 					/>
-				</div>
+				</Box>
 				{meta.touched && meta.error && (
 					<p className="help is-danger">{meta.error}</p>
 				)}
-			</div>
+			</Box>
 		)}
 	/>
 );
